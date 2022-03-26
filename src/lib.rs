@@ -32,17 +32,17 @@ impl<T> ChangeTrackingVec<T> {
     }
 
     #[inline]
-    fn count(&self) {
+    pub fn count(&self) {
         self.revision.fetch_add(1, Ordering::Relaxed);
     }
 
     #[inline]
-    fn revision(&self) -> usize {
+    pub fn revision(&self) -> usize {
         self.revision.load(Ordering::Relaxed)
     }
 
     #[inline]
-    fn changed(&mut self) -> bool {
+    pub fn changed(&mut self) -> bool {
         let rev = self.revision.load(Ordering::Relaxed);
         let changed = rev != self.checked_revision;
         self.checked_revision = rev;
