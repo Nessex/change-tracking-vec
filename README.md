@@ -15,6 +15,7 @@ let ct_vec_2 = ChangeTrackingVec::with_capacity(10);
 Check the revision counter with `revision() -> usize`:
 
 ```
+// NOTE: This counter will wrap!
 ct_vec.revision()
 ```
 
